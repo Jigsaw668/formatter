@@ -1,51 +1,53 @@
 package contain;
 
-import contain.interfaces.*;
+import contain.exceptions.FormatterException;
+import contain.interfaces.InputInterface;
+import contain.interfaces.OutputInterface;
 
-import java.io.*;
-import java.lang.String;
-
+/**
+ * @author Denis Makarov
+ */
 public class Formatter {
-    /**
-     * @throws
-     */
-    public static void format(Input input, Output output) throws IOException {
+    public static void format(final InputInterface in, final OutputInterface out) throws FormatterException {
 
-        int level = 0;
+        try {
+            int level = 0;
 
-        String skip = "\n\t";
-        String newline = "{};";
+            String skip = "\n\t";
+            String newline = "{};";
 
-        char prev = 0;
+            char prev = 0;
 
-        while (input.readNext()) {
+            while (in.readNext()) {
 
-            if (input.getChar() == '{') {
-                level++;
-            }
+                if (in.getChar() == '{') {
+                    level++;
+                }
 
-            if (input.getChar() == '}') {
-                level--;
-            }
+                if (in.getChar() == '}') {
+                    level--;
+                }
 
-            if ("{};".indexOf(prev) != -1) {
+                if ("{};".indexOf(prev) != -1) {
+                    for (int i = 0; i < level * 4; i++) {
+                        out.writeChar(' ');
+                    }
+                }
 
-                for (int i = 0; i < level * 4; i++) {
-                    output.WriteChar(' ');
+                prev = in.getChar();
+
+                if (skip.indexOf(prev) != -1) {
+                    continue;
+                }
+
+                out.writeChar(in.getChar());
+
+                if (newline.indexOf(in.getChar()) != -1) {
+                    out.writeChar("\n".charAt(0));
                 }
             }
-
-            prev = input.getChar();
-
-            if (skip.indexOf(prev) != -1) {
-                continue;
-            }
-
-            output.WriteChar(input.getChar());
-
-            if (newline.indexOf(input.getChar()) != -1) {
-                output.WriteChar("\n".charAt(0));
-            }
+        } catch (Exception e) {
+            throw new FormatterException(e);
         }
     }
 }

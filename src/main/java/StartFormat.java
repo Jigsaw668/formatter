@@ -1,29 +1,21 @@
 import contain.Formatter;
-import contain.Io.InputString;
-import contain.Io.OutputStreamWrite;
-import contain.interfaces.Input;
-import contain.interfaces.Output;
-
-import java.io.IOException;
+import contain.io.ioSystem.InputStreamRead;
+import contain.io.ioSystem.OutputStreamWrite;
 
 /**
- * StartFormat
+ * @author Denis Makarov
  */
-
 public class StartFormat {
-    public static void main(String[] args) {
-
-        String testString = "a;int a;void(){method;aaaa;if(){if(){}}}";
-
-        Input input = new InputString(testString);
-        Output output = new OutputStreamWrite();
+    public static void main(final String[] args) {
 
         try {
-            Formatter.format(input, output);
-            output.close();
-            input.close();
+            InputStreamRead in = new InputStreamRead();
+            OutputStreamWrite out = new OutputStreamWrite();
+            Formatter.format(in, out);
+            out.close();
+            in.close();
             System.out.println("");
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

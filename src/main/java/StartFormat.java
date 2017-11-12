@@ -1,22 +1,63 @@
-import contain.Formatter;
-import contain.io.ioSystem.InputStreamRead;
-import contain.io.ioSystem.OutputStreamWrite;
+import it.sevenbits.formatter.Formatter;
+import it.sevenbits.formatter.io.interfaces.ICloseable;
+import it.sevenbits.formatter.io.interfaces.InputInterface;
+import it.sevenbits.formatter.io.interfaces.OutputInterface;
+import it.sevenbits.formatter.io.ioFiles.InFile;
+import it.sevenbits.formatter.io.ioFiles.OutFile;
+import it.sevenbits.formatter.io.ioStream.InputStreamRead;
+import it.sevenbits.formatter.io.ioStream.OutputStreamWrite;
+import org.apache.commons.cli.*;
+
 
 /**
  * @author Denis Makarov
  */
 public class StartFormat {
-    public static void main(final String[] args) {
+
+    public static void main(final String[] args) throws Exception {
+
+        Options options = new Options();
+
+        Option input = new Option("i", "input", true, "input file path");
+        options.addOption(input);
+
+        Option output = new Option("o", "output", true,"output file path");
+        options.addOption(output);
+
+        CommandLineParser parser = new DefaultParser();
+        HelpFormatter formatter = new HelpFormatter();
+        CommandLine cmd;
 
         try {
-            InputStreamRead in = new InputStreamRead();
-            OutputStreamWrite out = new OutputStreamWrite();
-            Formatter.format(in, out);
-            out.close();
-            in.close();
-            System.out.println("");
-        } catch (Exception e) {
-            e.printStackTrace();
+            cmd = parser.parse(options, args);
+        } catch (ParseException e) {
+            System.out.println(e.getMessage());
+            formatter.printHelp("", options);
+            System.exit(1);
+            return;
         }
+
+        String inputFilePath = cmd.getOptionValue("input");
+        String outputFilePath = cmd.getOptionValue("output");
+
+        InputInterface in;
+        OutputInterface out;
+
+        if (inputFilePath == null || inputFilePath.isEmpty()) {
+            in = new InputStreamRead();
+        } else {
+            in = new InFile(inputFilePath);
+        }
+
+        if (outputFilePath == null || outputFilePath.isEmpty()) {
+            out = new OutputStreamWrite();
+        } else {
+            out = new OutFile(outputFilePath);
+        }
+
+        Formatter f = new Formatter();
+        f.format(in , out);
+
+        ((ICloseable) out).close();
     }
 }

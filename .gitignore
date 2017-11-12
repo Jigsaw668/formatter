@@ -1,4 +1,3 @@
-java-formarter.iml
-.idea*
-target
-package-info.java
+*.iml
+*.idea
+target\

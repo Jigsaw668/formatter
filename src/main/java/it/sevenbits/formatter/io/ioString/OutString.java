@@ -3,21 +3,27 @@ package it.sevenbits.formatter.io.ioString;
 import it.sevenbits.formatter.io.interfaces.OutputInterface;
 
 /**
- * @author Denis Makarov
+ * Writing to a string
  */
 public class OutString implements OutputInterface {
 
-    private StringBuilder st;
+    private StringBuilder sr;
 
+    /**
+     * Constructor
+     */
     public OutString() {
-        st = new StringBuilder();
+        sr = new StringBuilder();
     }
 
     public String getString() {
-        return st.toString();
+        return sr.toString();
     }
 
+    /**
+     * @param ch - characters for writing
+     */
     public void writeChar(final char ch) {
-        st.append(ch);
+        sr.append(ch);
     }
 }

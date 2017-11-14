@@ -1,4 +1,4 @@
-package it.sevenbits.formatter;
+package it.sevenbits.formatter.io;
 
 import it.sevenbits.formatter.io.exceptions.FormatterException;
 import it.sevenbits.formatter.io.exceptions.OutputException;
@@ -6,9 +6,8 @@ import it.sevenbits.formatter.io.interfaces.InFormatter;
 import it.sevenbits.formatter.io.interfaces.InputInterface;
 import it.sevenbits.formatter.io.interfaces.OutputInterface;
 
-
 /**
- * @author Denis Makarov
+ * Edit and write to the output stream
  */
 public class Formatter implements InFormatter {
 
@@ -36,7 +35,11 @@ public class Formatter implements InFormatter {
             out.writeChar(' ');
         }
     }
-
+    /**
+     * @param in - input
+     * @param out - output
+     * @throws FormatterException - read or write exceptions
+     */
     public void format(final InputInterface in, final OutputInterface out) throws FormatterException {
 
         try {
@@ -74,8 +77,5 @@ public class Formatter implements InFormatter {
         } catch (Exception e) {
             throw new FormatterException(e);
         }
-
-
-
     }
 }

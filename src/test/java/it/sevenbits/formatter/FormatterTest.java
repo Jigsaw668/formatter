@@ -1,5 +1,6 @@
 package it.sevenbits.formatter;
 
+import it.sevenbits.formatter.io.Formatter;
 import it.sevenbits.formatter.io.ioString.OutString;
 import it.sevenbits.formatter.io.ioString.InString;
 

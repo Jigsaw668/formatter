@@ -9,13 +9,17 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
 /**
- * @author Denis Makarov
+ * An InputStreamReader is a bridge from byte streams to character streams:
+ * It reads bytes and decodes them into characters using a specified charset
  */
 public class InputStreamRead implements InputInterface, ICloseable {
 
     private InputStreamReader r;
     private int bt;
 
+    /**
+     * @throws InputException - invalid character set
+     */
     public InputStreamRead() throws InputException {
         try {
             r = new InputStreamReader(System.in, "UTF-8");

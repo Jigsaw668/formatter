@@ -4,20 +4,27 @@ import it.sevenbits.formatter.io.exceptions.InputException;
 import it.sevenbits.formatter.io.interfaces.InputInterface;
 
 /**
- * @author Denis Makarov
+ *  Class for working with strings
  */
 public class InString implements InputInterface {
-
-    public InString(final String st) {
-        this.pos = -1;
-        this.st = st;
-    }
-
-    private String st;
+    private String sr;
     private int pos;
 
+    /**
+     *
+     * @param sr - string fo reading
+     */
+    public InString(final String sr) {
+        this.pos = -1;
+        this.sr = sr;
+    }
+
+    /**
+     * @return - returns true if there is a character next
+     * @throws InputException - if there was a read error
+     */
     public boolean forNext() throws InputException {
-        if (this.pos < this.st.length() - 1) {
+        if (this.pos < this.sr.length() - 1) {
             pos++;
             return true;
         }
@@ -25,10 +32,6 @@ public class InString implements InputInterface {
     }
 
     public char getChar() {
-        return st.charAt(pos);
-    }
-
-    public void reset() {
-        pos = -1;
+        return sr.charAt(pos);
     }
 }

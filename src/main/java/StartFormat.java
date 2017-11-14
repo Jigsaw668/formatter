@@ -1,4 +1,4 @@
-import it.sevenbits.formatter.Formatter;
+import it.sevenbits.formatter.io.Formatter;
 import it.sevenbits.formatter.io.interfaces.ICloseable;
 import it.sevenbits.formatter.io.interfaces.InputInterface;
 import it.sevenbits.formatter.io.interfaces.OutputInterface;
@@ -8,12 +8,15 @@ import it.sevenbits.formatter.io.ioStream.InputStreamRead;
 import it.sevenbits.formatter.io.ioStream.OutputStreamWrite;
 import org.apache.commons.cli.*;
 
-
 /**
- * @author Denis Makarov
+ * Starts reading, editing and writing to a file
  */
 public class StartFormat {
-
+    /**
+     *
+     * @param args - main argument
+     * @throws Exception - catches all exceptions
+     */
     public static void main(final String[] args) throws Exception {
 
         Options options = new Options();
@@ -21,7 +24,7 @@ public class StartFormat {
         Option input = new Option("i", "input", true, "input file path");
         options.addOption(input);
 
-        Option output = new Option("o", "output", true,"output file path");
+        Option output = new Option("o", "output", true, "output file path");
         options.addOption(output);
 
         CommandLineParser parser = new DefaultParser();

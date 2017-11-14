@@ -10,21 +10,22 @@ import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 
 /**
- * @author Denis Makarov
+ * An OutputStreamWriter is a bridge from character streams to byte streams:
+ * Characters written to it are encoded into bytes using a specified charset.
  */
 public class OutputStreamWrite implements OutputInterface, ICloseable {
 
     private OutputStreamWriter out;
 
+    /**
+     * @throws OutputException - incorrect charset
+     */
     public OutputStreamWrite() throws OutputException {
         try {
             out = new OutputStreamWriter(System.out, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             throw new OutputException("Incorrect ch", e);
         }
-    }
-
-    public void setStream(final Writer stream) {
     }
 
     @Override

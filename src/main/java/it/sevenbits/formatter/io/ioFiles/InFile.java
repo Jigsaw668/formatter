@@ -6,14 +6,23 @@ import it.sevenbits.formatter.io.exceptions.InputException;
 import it.sevenbits.formatter.io.interfaces.ICloseable;
 import it.sevenbits.formatter.io.interfaces.InputInterface;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
 
-
+/**
+ * For reading character streams
+ */
 public class InFile implements InputInterface, ICloseable {
 
     private InputStreamReader r;
     private int bt;
 
+    /**
+     * @param inputFilePath - the path to the file
+     * @throws InputException - file not found
+     */
     public InFile(final String inputFilePath) throws InputException {
 
         try {
@@ -22,15 +31,6 @@ public class InFile implements InputInterface, ICloseable {
             throw new InputException("File not found", e);
         } catch (Exception e) {
             throw new InputException(e);
-        }
-    }
-
-    @Override
-    public void close() throws CloseException {
-        try {
-            r.close();
-        } catch (Exception e) {
-            throw new CloseException(e);
         }
     }
 
@@ -47,5 +47,14 @@ public class InFile implements InputInterface, ICloseable {
     @Override
     public char getChar() throws InputException {
         return (char) bt;
+    }
+
+    @Override
+    public void close() throws CloseException {
+        try {
+            r.close();
+        } catch (Exception e) {
+            throw new CloseException(e);
+        }
     }
 }

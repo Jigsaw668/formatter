@@ -25,7 +25,7 @@ public class InputStreamRead implements InputInterface, ICloseable {
     }
 
     @Override
-    public boolean readNext() throws InputException {
+    public boolean forNext() throws InputException {
         try {
             bt = r.read();
         } catch (Exception e) {

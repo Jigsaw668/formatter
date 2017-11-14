@@ -12,7 +12,7 @@ public class InFileTest {
         InFile f = new InFile("/home/jigsaw/src/main/java/formatter/src/test/java/it/sevenbits/formatter/ioFile/in.test");//{test()}
 
         StringBuilder sb = new StringBuilder();
-        while (f.readNext()) {
+        while (f.forNext()) {
             sb.append(f.getChar());
         }
         f.close();

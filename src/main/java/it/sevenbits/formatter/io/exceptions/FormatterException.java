@@ -1,13 +1,13 @@
 package it.sevenbits.formatter.io.exceptions;
 
 /**
- * @author Denis Makarov
+ * Exception subclass for the format method
  */
 public class FormatterException extends Exception {
     /**
-     * @param cause причина
+     * @param cause - reason for exclusion
      */
-    public FormatterException(final Exception cause) {
+    public FormatterException(final Throwable cause) {
         super(cause);
     }
 }

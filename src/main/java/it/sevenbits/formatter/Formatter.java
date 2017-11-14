@@ -44,7 +44,7 @@ public class Formatter implements InFormatter {
             char previousChar = 0;
             char currentChar;
 
-            while (in.readNext()) {
+            while (in.forNext()) {
                 currentChar = in.getChar();
 
                 if (skip(currentChar)) {

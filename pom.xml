@@ -33,7 +33,6 @@
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
 
-
                 <executions>
                     <execution>
                         <phase>package</phase>

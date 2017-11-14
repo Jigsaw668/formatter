@@ -1,17 +1,20 @@
 package it.sevenbits.formatter.io.exceptions;
 
 /**
- * @author Denis Makarov
+ * Exclusion subclass for the input data stream
  */
 public class InputException extends Exception {
     /**
-     * @param message сообщение деталей
-     * @param cause причина
+     * @param message - the detail message
+     * @param cause - reason for exclusion
      */
     public InputException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
+    /**
+     * @param e - interception of an exception
+     */
     public InputException(final Exception e) {
         super(e);
     }

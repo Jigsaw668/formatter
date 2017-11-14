@@ -1,6 +1,7 @@
 package it.sevenbits.formatter.io.ioFiles;
 
 import it.sevenbits.formatter.io.exceptions.CloseException;
+
 import it.sevenbits.formatter.io.exceptions.InputException;
 import it.sevenbits.formatter.io.interfaces.ICloseable;
 import it.sevenbits.formatter.io.interfaces.InputInterface;
@@ -34,7 +35,7 @@ public class InFile implements InputInterface, ICloseable {
     }
 
     @Override
-    public boolean readNext() throws InputException {
+    public boolean forNext() throws InputException {
         try {
             bt = r.read();
         } catch (Exception e) {

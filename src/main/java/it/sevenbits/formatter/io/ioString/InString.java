@@ -16,7 +16,7 @@ public class InString implements InputInterface {
     private String st;
     private int pos;
 
-    public boolean readNext() throws InputException {
+    public boolean forNext() throws InputException {
         if (this.pos < this.st.length() - 1) {
             pos++;
             return true;

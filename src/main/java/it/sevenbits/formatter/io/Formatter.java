@@ -74,8 +74,8 @@ public class Formatter implements InFormatter {
                 previousChar = currentChar;
 
             }
-        } catch (Exception e) {
-            throw new FormatterException(e);
+        } catch (Throwable cause) {
+            throw new FormatterException(cause);
         }
     }
 }

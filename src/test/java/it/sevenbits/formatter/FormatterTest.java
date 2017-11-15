@@ -63,8 +63,8 @@ public class FormatterTest {
 
     @Test
     public void notValidInputTest() throws Exception {
-        String InputString = "{\n  test();\n    {\n    }\n}\n";
-        String ExpectedString = "{\n  test();\n    {\n    }\n}\n";
+        String InputString = "{test();{}}";
+        String ExpectedString = "{\n    test();\n    {\n    }\n}\n";
 
         InString in = new InString(InputString);
         OutString out = new OutString();

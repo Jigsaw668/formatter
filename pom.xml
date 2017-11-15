@@ -47,7 +47,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>StartFormat</mainClass>
+                            <mainClass>it.sevenbits.StartFormat</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

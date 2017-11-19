@@ -1,8 +1,8 @@
 package it.sevenbits.formatter;
 
-import it.sevenbits.formatter.io.Formatter;
-import it.sevenbits.formatter.io.ioString.OutString;
-import it.sevenbits.formatter.io.ioString.InString;
+import it.sevenbits.app.formatter.implementation.Formatter;
+import it.sevenbits.app.io.writer.implementation.StringWriter;
+import it.sevenbits.app.io.reader.implementation.StringReader;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,12 +23,12 @@ public class FormatterTest {
         String InputString = "{}";
         String ExpectedString = "{\n}\n";//
 
-        InString in = new InString(InputString);
-        OutString out = new OutString();
+        StringReader in = new StringReader(InputString);
+        StringWriter out = new StringWriter();
 
         formatter.format(in , out);
 
-        String OutString = out.getString();
+        String OutString = out.toString();
         assertEquals(ExpectedString , OutString);
 
     }
@@ -38,12 +38,12 @@ public class FormatterTest {
         String InputString = "{test();}";
         String ExpectedString = "{\n    test();\n}\n";
 
-        InString in = new InString(InputString);
-        OutString out = new OutString();
+        StringReader in = new StringReader(InputString);
+        StringWriter out = new StringWriter();
 
         formatter.format(in , out);
 
-        String OutString = out.getString();
+        String OutString = out.toString();
         assertEquals(ExpectedString , OutString);
     }
 
@@ -52,12 +52,12 @@ public class FormatterTest {
         String InputString = "{test();{}}";
         String ExpectedString = "{\n    test();\n    {\n    }\n}\n";
 
-        InString in = new InString(InputString);
-        OutString out = new OutString();
+        StringReader in = new StringReader(InputString);
+        StringWriter out = new StringWriter();
 
         formatter.format(in , out);
 
-        String OutString = out.getString();
+        String OutString = out.toString();
         assertEquals(ExpectedString , OutString);
     }
 
@@ -66,12 +66,12 @@ public class FormatterTest {
         String InputString = "{test();{}}";
         String ExpectedString = "{\n    test();\n    {\n    }\n}\n";
 
-        InString in = new InString(InputString);
-        OutString out = new OutString();
+        StringReader in = new StringReader(InputString);
+        StringWriter out = new StringWriter();
 
         formatter.format(in , out);
 
-        String OutString = out.getString();
+        String OutString = out.toString();
         assertEquals(ExpectedString , OutString);
     }
 }

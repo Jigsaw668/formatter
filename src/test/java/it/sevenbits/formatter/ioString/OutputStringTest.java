@@ -1,7 +1,7 @@
 package it.sevenbits.formatter.ioString;
 
-import it.sevenbits.formatter.io.exceptions.OutputException;
-import it.sevenbits.formatter.io.ioString.OutString;
+import it.sevenbits.app.io.writer.WriterException;
+import it.sevenbits.app.io.writer.implementation.StringWriter;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -9,20 +9,20 @@ import static org.junit.Assert.*;
 public class OutputStringTest {
     @Test
     public void WriteSingleCharTest() throws Exception {
-        OutString out = new OutString();
-        out.writeChar('1');
-        assertEquals("1", out.getString());
+        StringWriter out = new StringWriter();
+        out.write('1');
+        assertEquals("1", out.toString());
     }
 
     @Test
-    public void WriteSomeCharsTest() throws OutputException {
+    public void WriteSomeCharsTest() throws WriterException {
         String st = "string";
-        OutString out = new OutString();
+        StringWriter out = new StringWriter();
 
         for (int i = 0, n = st.length(); i < n; i++) {
-            out.writeChar(st.charAt(i));
+            out.write(st.charAt(i));
         }
-        assertEquals(out.getString(), st);
+        assertEquals(out.toString(), st);
     }
 
 }

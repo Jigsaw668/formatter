@@ -1,9 +1,9 @@
 package it.sevenbits.app.formatter.implementation;
 
 import it.sevenbits.app.formatter.FormatterException;
+import it.sevenbits.app.io.reader.IReader;
 import it.sevenbits.app.io.writer.WriterException;
 import it.sevenbits.app.formatter.IFormatter;
-import it.sevenbits.app.io.reader.IReader;
 import it.sevenbits.app.io.writer.IWriter;
 
 /**
@@ -36,19 +36,19 @@ public class Formatter implements IFormatter {
         }
     }
     /**
-     * @param in - input
-     * @param out - output
+     * @param reader - input
+     * @param writer - output
      * @throws FormatterException - read or write exceptions
      */
-    public void format(final IReader in, final IWriter out) throws FormatterException {
+    public void format(final IReader reader, final IWriter writer) throws FormatterException {
 
         try {
             int level = 0;
             char previousChar = 0;
             char currentChar;
 
-            while (in.readNext()) {
-                currentChar = in.getChar();
+            while (reader.readChar()) {
+                currentChar = reader.hasMoreChars();
 
                 if (skip(currentChar)) {
                     continue;
@@ -59,17 +59,17 @@ public class Formatter implements IFormatter {
                 }
 
                 if (newLine(previousChar)) {
-                    writeIndent(out , level);
+                    writeIndent(writer, level);
                 }
 
                 if (gradeUp(currentChar)) {
                     level++;
                 }
 
-                out.write(currentChar);
+                writer.write(currentChar);
 
                 if (newLine(currentChar)) {
-                    out.write((char) NEWLINE);
+                    writer.write((char) NEWLINE);
                 }
                 previousChar = currentChar;
             }

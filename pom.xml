@@ -34,7 +34,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>it.sevenbits.app.Main</mainClass>
+                            <mainClass>it.sevenbits.app.StartFormat</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

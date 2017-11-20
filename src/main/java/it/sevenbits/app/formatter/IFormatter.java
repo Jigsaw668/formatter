@@ -8,9 +8,10 @@ import it.sevenbits.app.io.writer.IWriter;
  */
 public interface IFormatter {
     /**
-     * @param in - input
-     * @param out - output
+     * @param reader - input
+     * @param writer - output
      * @throws FormatterException - with formatting error
      */
-    void format(IReader in, IWriter out) throws FormatterException;
+    void format(IReader reader, IWriter writer) throws FormatterException;
+
 }

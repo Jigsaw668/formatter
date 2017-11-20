@@ -13,8 +13,8 @@ public class StringReaderTest {
 
         char ch = '1';
         IReader in = new StringReader("" + ch);
-        assertTrue(in.readNext());
-        assertEquals(ch, in.getChar());
+        assertTrue(in.readChar());
+        assertEquals(ch, in.hasMoreChars());
     }
 
     @Test
@@ -23,8 +23,8 @@ public class StringReaderTest {
         StringReader in = new StringReader(st);
 
         for (int i = 0, n = st.length(); i < n; i++) {
-            in.readNext();
-            assertEquals(st.charAt(i), in.getChar());
+            in.readChar();
+            assertEquals(st.charAt(i), in.hasMoreChars());
         }
     }
 }

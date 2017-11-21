@@ -8,11 +8,11 @@ public interface IReader {
      * @return - returns true if there is a character next
      * @throws ReaderException - if there was a read error
      */
-    boolean readChar() throws ReaderException;
+    boolean readNext() throws ReaderException;
 
     /**
      * @return - returns the value of the specified field as a char
      * @throws ReaderException - the specified cast is inadmissible
      */
-    char hasMoreChars() throws ReaderException;
+    char getChar() throws ReaderException;
 }

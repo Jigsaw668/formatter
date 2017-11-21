@@ -47,8 +47,8 @@ public class Formatter implements IFormatter {
             char previousChar = 0;
             char currentChar;
 
-            while (reader.readChar()) {
-                currentChar = reader.hasMoreChars();
+            while (reader.readNext()) {
+                currentChar = reader.getChar();
 
                 if (skip(currentChar)) {
                     continue;

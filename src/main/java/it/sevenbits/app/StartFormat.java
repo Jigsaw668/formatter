@@ -18,12 +18,12 @@ public final class StartFormat {
     public static void main(final String[] args) throws Exception {
 
         try (
-                FileReader in = new FileReader(args[0]);
-                FileWriter out = new FileWriter(args[1])
+                FileReader reader = new FileReader(args[0]);
+                FileWriter writer = new FileWriter(args[1])
         ) {
             IFormatter formatter = new Formatter();
 
-            formatter.format(in, out);
+            formatter.format(reader, writer);
         }
     }
 }

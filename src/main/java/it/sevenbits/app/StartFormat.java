@@ -8,7 +8,8 @@ import it.sevenbits.app.io.writer.implementation.FileWriter;
 /**
  * Starts reading, editing and writing to a file
  */
-public class StartFormat {
+public final class StartFormat {
+    private StartFormat() {}
     /**
      * Main method.
      * @param args console arguments

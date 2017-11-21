@@ -1,5 +1,8 @@
 package it.sevenbits.app.lexer;
 
+/**
+ * Exception for Lexer
+ */
 public class LexerException extends Exception {
     /**
      * @param message - the detail message

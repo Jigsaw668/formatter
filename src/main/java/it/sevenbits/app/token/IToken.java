@@ -5,16 +5,12 @@ package it.sevenbits.app.token;
  */
 public interface IToken {
     /**
-     *
      * @return Token name
-     * @throws TokenException
      */
-    String getName() throws TokenException;
+    String getName();
 
     /**
-     *
      * @return lexeme
-     * @throws TokenException
      */
-    String getLexeme() throws TokenException;
+    String getLexeme();
 }

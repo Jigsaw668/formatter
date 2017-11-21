@@ -30,11 +30,12 @@ public class Formatter implements IFormatter {
         return ch == '}';
     }
 
-    private void writeIndent(final IWriter out , final int level) throws WriterException {
-        for (int i = 0 ; i < level * TAB; i++) {
+    private void writeIndent(final IWriter out, final int level) throws WriterException {
+        for (int i = 0; i < level * TAB; i++) {
             out.write(' ');
         }
     }
+
     /**
      * @param reader - input
      * @param writer - output

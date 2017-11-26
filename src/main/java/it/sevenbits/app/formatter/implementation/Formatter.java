@@ -42,16 +42,16 @@ public class Formatter implements IFormatter {
                 String name = token.getName();
                 String lexeme = token.getLexeme();
 
-                if (name.equals("newLine") || (prevToken.getLexeme().equals(")") && name.equals("whitespace"))) {
+                if (name.equals("newLine") || (prevToken.getLexeme().equals(")") && name.equals("whiteSpace"))) {
                     continue;
                 }
-                if (name.equals("openBracket")) {
+                if (name.equals("leftBracket")) {
                     indentLevel++;
                 }
-                if (name.equals("closeBracket")) {
+                if (name.equals("rightBracket")) {
                     indentLevel--;
                 }
-                if (!name.equals("whitespace")) {
+                if (!name.equals("whiteSpace")) {
                     if (newLine) {
                         for (int i = 0; i < indentLevel * indent; i++) {
                             write(out, " ");
@@ -62,13 +62,13 @@ public class Formatter implements IFormatter {
                 if (newLine) {
                     continue;
                 }
-                if ((prevToken.getLexeme().equals(")") && !name.equals("semicolon") && !name.equals("whitespace")) ||
-                        (!prevToken.getLexeme().equals("whitespace") && name.equals("openBracket"))) {
+                if ((prevToken.getLexeme().equals(")") && !name.equals("semicolon") && !name.equals("whiteSpace")) ||
+                        (!prevToken.getLexeme().equals("whiteSpace") && name.equals("leftBracket"))) {
                     write(out, " ");
                 }
                 prevToken = token;
 
-                if (name.equals("semicolon") || name.equals("closeBracket") || name.equals("openBracket")) {
+                if (name.equals("semicolon") || name.equals("rightBracket") || name.equals("leftBracket")) {
                     lexeme += "\n";
                     newLine = true;
                 }

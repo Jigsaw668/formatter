@@ -4,6 +4,7 @@ import it.sevenbits.app.formatter.implementation.Formatter;
 import it.sevenbits.app.io.writer.implementation.StringWriter;
 import it.sevenbits.app.io.reader.implementation.StringReader;
 
+import it.sevenbits.app.lexer.ILexer;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,7 +27,7 @@ public class FormatterTest {
         StringReader in = new StringReader(InputString);
         StringWriter out = new StringWriter();
 
-        formatter.format(in , out);
+        formatter.format((ILexer) in, out);
 
         String OutString = out.toString();
         assertEquals(ExpectedString , OutString);
@@ -41,7 +42,7 @@ public class FormatterTest {
         StringReader in = new StringReader(InputString);
         StringWriter out = new StringWriter();
 
-        formatter.format(in , out);
+        formatter.format((ILexer) in, out);
 
         String OutString = out.toString();
         assertEquals(ExpectedString , OutString);
@@ -55,7 +56,7 @@ public class FormatterTest {
         StringReader in = new StringReader(InputString);
         StringWriter out = new StringWriter();
 
-        formatter.format(in , out);
+        formatter.format((ILexer) in, out);
 
         String OutString = out.toString();
         assertEquals(ExpectedString , OutString);
@@ -69,7 +70,7 @@ public class FormatterTest {
         StringReader in = new StringReader(InputString);
         StringWriter out = new StringWriter();
 
-        formatter.format(in , out);
+        formatter.format((ILexer) in, out);
 
         String OutString = out.toString();
         assertEquals(ExpectedString , OutString);

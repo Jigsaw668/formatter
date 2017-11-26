@@ -2,80 +2,89 @@ package it.sevenbits.app.formatter.implementation;
 
 import it.sevenbits.app.formatter.FormatterException;
 import it.sevenbits.app.io.reader.IReader;
+import it.sevenbits.app.io.reader.ReaderException;
 import it.sevenbits.app.io.writer.WriterException;
 import it.sevenbits.app.formatter.IFormatter;
 import it.sevenbits.app.io.writer.IWriter;
+import it.sevenbits.app.lexer.ILexer;
+import it.sevenbits.app.lexer.LexerException;
+import it.sevenbits.app.token.IToken;
+import it.sevenbits.app.token.implementation.Token;
 
 /**
  * Edit and write to the output stream
  */
 public class Formatter implements IFormatter {
 
-    private static final int NEWLINE = 10;
-    private static final int TAB = 4;
+    /**
+     * Basic constructor
+     */
+    public Formatter() {
 
-    private boolean skip(final char ch) {
-        return "\n\t".indexOf(ch) != -1;
-    }
-
-    private boolean newLine(final char ch) {
-        return "{};".indexOf(ch) != -1;
-    }
-
-    private boolean gradeUp(final char ch) {
-        return ch == '{';
-    }
-
-    private boolean gradeDown(final char ch) {
-        return ch == '}';
-    }
-
-    private void writeIndent(final IWriter out, final int level) throws WriterException {
-        for (int i = 0; i < level * TAB; i++) {
-            out.write(' ');
-        }
     }
 
     /**
-     * @param reader - input
-     * @param writer - output
-     * @throws FormatterException - read or write exceptions
+     * * Method for formatting java code
+     * @param lexer lexer
+     * @param out output file
+     * @throws FormatterException when can't format code
      */
-    public void format(final IReader reader, final IWriter writer) throws FormatterException {
-
+    public void format(final ILexer lexer, final IWriter out) throws FormatterException {
         try {
-            int level = 0;
-            char previousChar = 0;
-            char currentChar;
+            final int indent = 4;
 
-            while (reader.readNext()) {
-                currentChar = reader.getChar();
+            IToken prevToken = new Token(" ", " ");
+            boolean newLine = false;
+            int indentLevel = 0;
 
-                if (skip(currentChar)) {
+            while (lexer.hasMoreTokens()) {
+                IToken token = lexer.readToken();
+                String name = token.getName();
+                String lexeme = token.getLexeme();
+
+                if (name.equals("newLine") || (prevToken.getLexeme().equals(")") && name.equals("whitespace"))) {
                     continue;
                 }
-
-                if (gradeDown(currentChar)) {
-                    level--;
+                if (name.equals("openBracket")) {
+                    indentLevel++;
                 }
-
-                if (newLine(previousChar)) {
-                    writeIndent(writer, level);
+                if (name.equals("closeBracket")) {
+                    indentLevel--;
                 }
-
-                if (gradeUp(currentChar)) {
-                    level++;
+                if (!name.equals("whitespace")) {
+                    if (newLine) {
+                        for (int i = 0; i < indentLevel * indent; i++) {
+                            write(out, " ");
+                        }
+                    }
+                    newLine = false;
                 }
-
-                writer.write(currentChar);
-
-                if (newLine(currentChar)) {
-                    writer.write((char) NEWLINE);
+                if (newLine) {
+                    continue;
                 }
-                previousChar = currentChar;
+                if ((prevToken.getLexeme().equals(")") && !name.equals("semicolon") && !name.equals("whitespace")) ||
+                        (!prevToken.getLexeme().equals("whitespace") && name.equals("openBracket"))) {
+                    write(out, " ");
+                }
+                prevToken = token;
+
+                if (name.equals("semicolon") || name.equals("closeBracket") || name.equals("openBracket")) {
+                    lexeme += "\n";
+                    newLine = true;
+                }
+                write(out, lexeme);
             }
-        } catch (Throwable e) {
-            throw new FormatterException(e);
+        } catch (LexerException | WriterException e) {
+            throw new FormatterException("Something went wrong", e);
+        } catch (ReaderException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void write(final IWriter writer, final String lexeme) throws WriterException {
+        char[] ch = lexeme.toCharArray();
+        for (char c : ch) {
+            writer.write(c);
         }
     }
 }

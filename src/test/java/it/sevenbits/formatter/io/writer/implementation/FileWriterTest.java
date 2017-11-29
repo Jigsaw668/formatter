@@ -1,4 +1,4 @@
-package it.sevenbits.formatter.ioFile;
+package it.sevenbits.formatter.io.writer.implementation;
 
 
 import it.sevenbits.app.io.writer.implementation.FileWriter;
@@ -14,7 +14,7 @@ public class FileWriterTest {
     @Test
     public void simpleWriteTest() throws Exception {
         String ExpectString = "{}test;";
-        String filename = "src/test/out.test";
+        String filename = "src/test/resources/out.test";
         FileWriter f = new FileWriter(filename);
         for (int i = 0 , n = ExpectString.length(); i < n; i++) {
             f.write(ExpectString.charAt(i));

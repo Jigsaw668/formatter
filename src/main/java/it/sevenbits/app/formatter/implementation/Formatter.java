@@ -1,13 +1,11 @@
 package it.sevenbits.app.formatter.implementation;
 
 import it.sevenbits.app.formatter.FormatterException;
-import it.sevenbits.app.io.reader.IReader;
-import it.sevenbits.app.io.reader.ReaderException;
+
 import it.sevenbits.app.io.writer.WriterException;
 import it.sevenbits.app.formatter.IFormatter;
 import it.sevenbits.app.io.writer.IWriter;
 import it.sevenbits.app.lexer.ILexer;
-import it.sevenbits.app.lexer.LexerException;
 import it.sevenbits.app.token.IToken;
 import it.sevenbits.app.token.implementation.Token;
 
@@ -74,10 +72,8 @@ public class Formatter implements IFormatter {
                 }
                 write(out, lexeme);
             }
-        } catch (LexerException | WriterException e) {
+        } catch (Exception e) {
             throw new FormatterException("Something went wrong", e);
-        } catch (ReaderException e) {
-            e.printStackTrace();
         }
     }
 

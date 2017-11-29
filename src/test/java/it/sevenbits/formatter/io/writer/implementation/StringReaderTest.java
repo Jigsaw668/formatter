@@ -1,4 +1,4 @@
-package it.sevenbits.formatter.ioString;
+package it.sevenbits.formatter.io.writer.implementation;
 
 import it.sevenbits.app.io.reader.ReaderException;
 import it.sevenbits.app.io.reader.implementation.StringReader;

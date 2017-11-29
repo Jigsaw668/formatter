@@ -4,6 +4,7 @@ package it.sevenbits.app.lexer.implementation;
 import it.sevenbits.app.io.reader.IReader;
 import it.sevenbits.app.io.reader.ReaderException;
 import it.sevenbits.app.lexer.ILexer;
+import it.sevenbits.app.lexer.LexerException;
 import it.sevenbits.app.token.IToken;
 import it.sevenbits.app.token.implementation.Token;
 
@@ -21,16 +22,16 @@ public class Lexer implements ILexer {
     }
 
     @Override
-    public boolean hasMoreTokens() throws ReaderException {
+    public boolean hasMoreTokens() throws LexerException {
         try {
             return reader.readNext();
         } catch (ReaderException e) {
-            throw new ReaderException("Can't read", e);
+            throw new LexerException("Can't read", e);
         }
     }
 
     @Override
-    public IToken readToken() throws ReaderException {
+    public IToken readToken() throws LexerException {
         try {
             String name;
             String lexeme;
@@ -61,7 +62,7 @@ public class Lexer implements ILexer {
             lexeme = Character.toString(ch);
             return new Token(name, lexeme);
         } catch (ReaderException e) {
-            throw new ReaderException("Can't read for some reason", e);
+            throw new LexerException("Can't read for some reason", e);
         }
     }
 }

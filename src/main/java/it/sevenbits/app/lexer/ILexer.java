@@ -1,6 +1,6 @@
 package it.sevenbits.app.lexer;
 
-import it.sevenbits.app.io.reader.ReaderException;
+
 import it.sevenbits.app.token.IToken;
 
 /**
@@ -12,11 +12,11 @@ public interface ILexer {
      * @return token
      * @throws LexerException - NullPointerException
      */
-    IToken readToken() throws LexerException, ReaderException;
+    IToken readToken() throws LexerException;
 
     /**
      * @return true if has more token
      * @throws LexerException - NullPointerException
      */
-    boolean hasMoreTokens() throws LexerException, ReaderException;
+    boolean hasMoreTokens() throws LexerException;
 }

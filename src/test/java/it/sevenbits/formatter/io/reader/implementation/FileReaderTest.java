@@ -1,4 +1,4 @@
-package it.sevenbits.formatter.ioFile;
+package it.sevenbits.formatter.io.reader.implementation;
 
 import it.sevenbits.app.io.reader.implementation.FileReader;
 import org.junit.Test;
@@ -9,7 +9,7 @@ public class FileReaderTest {
 
     @Test
     public void openAndReadTest() throws Exception {
-        FileReader f = new FileReader("src/test/in.test");//{test()}
+        FileReader f = new FileReader("src/test/resources/in.test");//{test()}
 
         StringBuilder sb = new StringBuilder();
         while (f.readNext()) {

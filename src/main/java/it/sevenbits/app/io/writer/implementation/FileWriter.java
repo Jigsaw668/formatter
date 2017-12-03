@@ -31,7 +31,7 @@ public class FileWriter implements IWriter, ICloseable {
     }
 
     @Override
-    public void write(final char symbol) throws WriterException {
+    public void writeChar(final char symbol) throws WriterException {
         try {
             bufferedWriter.write(symbol);
         } catch (Exception e) {

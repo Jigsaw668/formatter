@@ -36,7 +36,7 @@ public class FileReader implements IReader, ICloseable {
     }
 
     @Override
-    public boolean readNext() throws ReaderException {
+    public boolean hasMoreChars() throws ReaderException {
         try {
             currentSymbolId = bufferedReader.read();
             return currentSymbolId > -1;
@@ -46,7 +46,7 @@ public class FileReader implements IReader, ICloseable {
     }
 
     @Override
-    public char getChar() throws ReaderException {
+    public char readChar() throws ReaderException {
         return (char) currentSymbolId;
     }
 

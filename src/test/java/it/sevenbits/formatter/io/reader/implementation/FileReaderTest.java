@@ -12,8 +12,8 @@ public class FileReaderTest {
         FileReader f = new FileReader("src/test/resources/in.test");//{test()}
 
         StringBuilder sb = new StringBuilder();
-        while (f.readNext()) {
-            sb.append(f.getChar());
+        while (f.hasMoreChars()) {
+            sb.append(f.readChar());
         }
         f.close();
         assertEquals("{test()}" , sb.toString());

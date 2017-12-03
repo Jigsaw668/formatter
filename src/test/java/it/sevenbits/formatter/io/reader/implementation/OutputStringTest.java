@@ -10,7 +10,7 @@ public class OutputStringTest {
     @Test
     public void WriteSingleCharTest() throws Exception {
         StringWriter out = new StringWriter();
-        out.write('1');
+        out.writeChar('1');
         assertEquals("1", out.toString());
     }
 
@@ -20,7 +20,7 @@ public class OutputStringTest {
         StringWriter out = new StringWriter();
 
         for (int i = 0, n = st.length(); i < n; i++) {
-            out.write(st.charAt(i));
+            out.writeChar(st.charAt(i));
         }
         assertEquals(out.toString(), st);
     }

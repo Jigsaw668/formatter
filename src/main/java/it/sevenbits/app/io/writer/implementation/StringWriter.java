@@ -25,7 +25,7 @@ public class StringWriter implements IWriter {
     }
 
     @Override
-    public void write(final char symbol) throws WriterException {
+    public void writeChar(final char symbol) throws WriterException {
         try {
             resultString.append(symbol);
         } catch (Exception e) {

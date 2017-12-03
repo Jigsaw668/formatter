@@ -6,8 +6,8 @@ package it.sevenbits.app.io.writer;
  */
 public interface IWriter {
     /**
-     * @param symbol - characters for writing
+     * @param c - characters for writing
      * @throws WriterException - if an error occurs during the recording process
      */
-    void write(char symbol) throws WriterException;
+    void writeChar(char c) throws WriterException;
 }

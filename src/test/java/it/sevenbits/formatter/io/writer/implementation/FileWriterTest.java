@@ -17,7 +17,7 @@ public class FileWriterTest {
         String filename = "src/test/resources/out.test";
         FileWriter f = new FileWriter(filename);
         for (int i = 0 , n = ExpectString.length(); i < n; i++) {
-            f.write(ExpectString.charAt(i));
+            f.writeChar(ExpectString.charAt(i));
         }
         f.close();
 

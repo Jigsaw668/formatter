@@ -24,7 +24,7 @@ public class StringReader implements IReader {
      * @return - returns true if there is a character next
      * @throws ReaderException - if there was a read error
      */
-    public boolean readNext() throws ReaderException {
+    public boolean hasMoreChars() throws ReaderException {
         return index < value.length();
     }
 
@@ -33,7 +33,7 @@ public class StringReader implements IReader {
      * @return - returns a character from the array of the string at the specified index
      * @throws ReaderException - reading outside the line
      */
-    public char getChar() throws ReaderException {
+    public char readChar() throws ReaderException {
 
         try {
             return value.charAt(index++);

@@ -10,7 +10,6 @@ public class StringReader implements IReader {
 
     private String value;
     private int index;
-
     /**
      *
      * @param value - string fo reading
@@ -22,9 +21,8 @@ public class StringReader implements IReader {
 
     /**
      * @return - returns true if there is a character next
-     * @throws ReaderException - if there was a read error
      */
-    public boolean hasMoreChars() throws ReaderException {
+    public boolean hasMoreChars() {
         return index < value.length();
     }
 

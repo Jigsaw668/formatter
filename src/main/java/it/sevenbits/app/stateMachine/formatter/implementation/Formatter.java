@@ -27,12 +27,12 @@ public class Formatter implements IFormatter {
     }
 
     /**
-     * Method for formatting java code
+     * * Method for formatting java code
      * @param reader source file
-     * @param writer output file
+     * @param out output file
      * @throws FormatterException when can't format code
      */
-    public void format(final IReader reader, final IWriter writer) throws FormatterException {
+    public void format(final IReader reader, final IWriter out) throws FormatterException {
         ILexer lexer = lexerFactory.createLexer(reader);
         try {
             final int indent = 4;
@@ -58,7 +58,7 @@ public class Formatter implements IFormatter {
                 if (!name.equals("whitespace")) {
                     if (newLine) {
                         for (int i = 0; i < indentLevel * indent; i++) {
-                            write(writer, " ");
+                            write(out, " ");
                         }
                     }
                     newLine = false;
@@ -68,7 +68,7 @@ public class Formatter implements IFormatter {
                 }
                 if ((prevToken.getLexeme().equals(")") && !name.equals("semicolon") && !name.equals("whitespace")) ||
                         (!prevToken.getLexeme().equals("whitespace") && name.equals("openBracket"))) {
-                    write(writer, " ");
+                    write(out, " ");
                 }
                 prevToken = token;
 
@@ -76,7 +76,7 @@ public class Formatter implements IFormatter {
                     lexeme += "\n";
                     newLine = true;
                 }
-                write(writer, lexeme);
+                write(out, lexeme);
             }
         } catch (LexerException | WriterException e) {
             throw new FormatterException("Something went wrong", e);

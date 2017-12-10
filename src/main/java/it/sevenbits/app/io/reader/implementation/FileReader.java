@@ -36,18 +36,19 @@ public class FileReader implements IReader, ICloseable {
     }
 
     @Override
-    public boolean hasMoreChars() throws ReaderException {
-        try {
-            currentSymbolId = bufferedReader.read();
-            return currentSymbolId > -1;
-        } catch (Exception e) {
-            throw new ReaderException("Attempting to read outside of the input stream", e);
-        }
+    public boolean hasMoreChars() {
+            return currentSymbolId >= 0;
     }
 
     @Override
     public char readChar() throws ReaderException {
-        return (char) currentSymbolId;
+        try {
+            int prevChar = currentSymbolId;
+            currentSymbolId = bufferedReader.read();
+            return (char) prevChar;
+        } catch (Exception e) {
+            throw new ReaderException(e);
+        }
     }
 
     @Override

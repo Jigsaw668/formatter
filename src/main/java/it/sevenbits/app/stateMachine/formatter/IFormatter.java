@@ -10,8 +10,8 @@ public interface IFormatter {
     /**
      * Method for formatting code
      * @param reader source
-     * @param writer output
+     * @param out output
      * @throws FormatterException when can't format code
      */
-    void format(IReader reader, IWriter writer) throws FormatterException;
+    void format(IReader reader, IWriter out) throws FormatterException;
 }

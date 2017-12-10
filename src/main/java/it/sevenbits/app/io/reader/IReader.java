@@ -7,7 +7,7 @@ public interface IReader {
     /**
      * @return - returns true if there is a character next
      */
-    boolean hasMoreChars() throws ReaderException;
+    boolean hasMoreChars();
 
     /**
      * @return - returns the value of the specified field as a char

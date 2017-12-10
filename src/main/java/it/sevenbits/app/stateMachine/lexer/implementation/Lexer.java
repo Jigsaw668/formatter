@@ -23,12 +23,8 @@ public class Lexer implements ILexer {
     }
 
     @Override
-    public boolean hasMoreTokens() throws LexerException {
-        try {
-            return reader.hasMoreChars();
-        } catch (ReaderException e) {
-            throw new LexerException(e);
-        }
+    public boolean hasMoreTokens() {
+        return reader.hasMoreChars();
     }
 
     @Override
@@ -49,8 +45,8 @@ public class Lexer implements ILexer {
                 lexeme = Character.toString(ch);
                 return new Token(name, lexeme);
             }
-        } catch (ReaderException re) {
-            throw new LexerException(re);
+        } catch (ReaderException e) {
+            throw new LexerException(e);
         }
         return new Token(" ", " ");
     }

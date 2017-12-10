@@ -10,9 +10,8 @@ public interface ILexer {
     /**
      * Checks if there's tokens left to read
      * @return true if there's tokens left to read
-     * @throws LexerException NullPointerException;
      */
-    boolean hasMoreTokens() throws LexerException;
+    boolean hasMoreTokens();
 
     /**
      * Read token

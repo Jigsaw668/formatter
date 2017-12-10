@@ -13,4 +13,10 @@ public class FormatterException extends Exception {
         super(message, cause);
     }
 
+    /**
+     *
+     * @param e - message
+     */
+    public FormatterException(final Exception e) {
+    }
 }

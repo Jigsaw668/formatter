@@ -2,9 +2,9 @@ package it.sevenbits.formatter.stateMachine.formatter.implementation;
 
 import it.sevenbits.app.io.reader.implementation.StringReader;
 import it.sevenbits.app.io.writer.implementation.StringWriter;
-import it.sevenbits.app.stateMachine.formatter.IFormatter;
-import it.sevenbits.app.stateMachine.formatter.implementation.Formatter;
-import it.sevenbits.app.stateMachine.lexer.implementation.LexerFactory;
+import it.sevenbits.app.formatter.IFormatter;
+import it.sevenbits.app.formatter.Formatter;
+import it.sevenbits.app.lexer.lexerFactory.LexerFactory;
 import org.junit.Before;
 import org.junit.Test;
 

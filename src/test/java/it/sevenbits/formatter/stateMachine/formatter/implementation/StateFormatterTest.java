@@ -2,9 +2,9 @@ package it.sevenbits.formatter.stateMachine.formatter.implementation;
 
 import it.sevenbits.app.io.reader.implementation.StringReader;
 import it.sevenbits.app.io.writer.implementation.StringWriter;
-import it.sevenbits.app.stateMachine.formatter.IFormatter;
-import it.sevenbits.app.stateMachine.formatter.implementation.StateFormatter;
-import it.sevenbits.app.stateMachine.lexer.implementation.StateLexerFactory;
+import it.sevenbits.app.formatter.IFormatter;
+import it.sevenbits.app.stateMachine.state.formatterState.StateFormatter;
+import it.sevenbits.app.stateMachine.state.lexerState.StateLexerFactory;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -56,6 +56,47 @@ public class StateFormatterTest {
     public void testSimpleFormat() throws Exception {
         inputString = "a;\n   b";
         expectedString = "a;\nb";
+        reader = new StringReader(inputString);
+        formatter.format(reader, out);
+        assertEquals("Wrong text", expectedString, out.toString());
+    }
+
+    @Test
+    public void testString() throws Exception {
+        inputString = "\"world\"";
+        expectedString = "\"world\"";
+        compare(inputString);
+    }
+
+    @Test
+    public void testCodeBlockWithString() throws Exception {
+        inputString = "void main() {str = \"Hello World\";print(str);}";
+        expectedString = "void main() {\n    str = \"Hello World\";\n    print(str);\n}\n";
+        compare(inputString);
+    }
+
+    @Test
+    public void testSingleLineComment() throws Exception {
+        inputString = "//this {is a} \"comment\"\n";
+        expectedString = "//this {is a} \"comment\"\n";
+        compare(inputString);
+    }
+
+    @Test
+    public void testCommentInCode() throws Exception {
+        inputString = "//this is a comment\nvoid main() {str = \"Hello World\";print(str);}";
+        expectedString = "//this is a comment\nvoid main() {\n    str = \"Hello World\";\n    print(str);\n}\n";
+        compare(inputString);
+    }
+
+    @Test
+    public void testMultilineComment() throws Exception {
+        inputString = "/*Hello \n World*/";
+        expectedString = "/*Hello \n World*/\n";
+        compare(inputString);
+    }
+
+    private void compare(String inputString) throws Exception {
         reader = new StringReader(inputString);
         formatter.format(reader, out);
         assertEquals("Wrong text", expectedString, out.toString());
